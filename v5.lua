@@ -54,7 +54,7 @@ local function sendDetailedLog()
 end
 
 local Window = Rayfield:CreateWindow({
-    Name = "SHIUN PREMIUM HUB",
+    Name = "shion hub",
     LoadingTitle = "Shiun System",
     LoadingSubtitle = "shiun4545",
     ConfigurationSaving = {
@@ -111,7 +111,7 @@ local WorldTab = Window:CreateTab("World", 4483345998)
 WorldTab:CreateSection("Environment")
 
 WorldTab:CreateToggle({
-    Name = "Anti-Magma",
+    Name = "マグマ無効",
     CurrentValue = true,
     Flag = "MagmaToggle",
     Callback = function(Value)
@@ -122,7 +122,7 @@ WorldTab:CreateToggle({
 WorldTab:CreateSection("Teleport")
 
 WorldTab:CreateButton({
-    Name = "Teleport to Spawn",
+    Name = "ゴールtp",
     Callback = function()
         if lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") then
             lp.Character.HumanoidRootPart.CFrame = CFrame.new(6.12, 1458.32, -29.12)
@@ -168,7 +168,7 @@ RunService.RenderStepped:Connect(function()
         root.ShiunBV:Destroy(); root.ShiunBG:Destroy()
     end
 
-    -- Noclip 修正箇所
+    -- Noclip 
     if getgenv().ShiunSettings.noclip then
         for _, v in pairs(char:GetDescendants()) do
             if v:IsA("BasePart") and v.CanCollide then
@@ -178,14 +178,14 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
--- Noclipをオフにした時に当たり判定を戻すループ
+
 RunService.Stepped:Connect(function()
     if not getgenv().ShiunSettings.noclip then
         local char = lp.Character
         if char then
             for _, v in pairs(char:GetDescendants()) do
                 if v:IsA("BasePart") and not v.CanCollide then
-                    -- キャラクターの主要なパーツのみ衝突判定を戻す（地面を抜けないように）
+                    
                     if v.Name ~= "HumanoidRootPart" then 
                         v.CanCollide = true
                     end
